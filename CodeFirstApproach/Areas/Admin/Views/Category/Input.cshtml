@@ -1,0 +1,43 @@
+﻿@model CodeFirstApproach.Models.Category
+@{
+    ViewBag.Title = "Input category";
+}
+
+<h2 class="txt-center mb-5">Input New Category</h2>
+@{ string isHide = "";
+    if (ViewBag.alert == null)
+    {
+        isHide = "d-hide";
+    }
+}
+<div class="alert alert-danger @isHide" role="alert">
+    @ViewBag.alert
+</div>
+
+<form method="post" action="/admin/category/input">
+    <div class="d-grid grid-1-4 mb-3">
+        @*<label for="categoryId" class="col-form-label">Category Id/Code</label>
+            <input type="number" class="form-control" id="categoryId" name="CategoryId">*@
+
+        @Html.LabelFor(tmp => tmp.CategoryId, new { @for = "categoryId", @class = "col-form-label" })
+        @Html.TextBoxFor(tmp => tmp.CategoryId, new { @type = "number", @class = "form-control", @id = "categoryId" })
+        <div></div>
+        @Html.ValidationMessageFor(tmp => tmp.CategoryId, "", new { @class = "text-danger" })
+    </div>
+    <div class="d-grid grid-1-4 mb-3">
+        @*<label for="categoryName" class="col-form-label">Category Name</label>
+            <input type="text" class="form-control" id="categoryName" name="CategoryName">*@
+
+        @Html.LabelFor(tmp => tmp.CategoryName, new { @for = "categoryName", @class = "col-form-label" })
+        @Html.TextBoxFor(tmp => tmp.CategoryName, new { @type = "text", @class = "form-control", @id = "categoryName" })
+        <div></div>
+        @Html.ValidationMessageFor(tmp => tmp.CategoryName, "", new { @class = "text-danger" })
+    </div>
+    @Html.ValidationSummary()
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a href="/category">
+        <button type="button" class="btn btn-outline-danger">
+            Cancel
+        </button>
+    </a>
+</form>

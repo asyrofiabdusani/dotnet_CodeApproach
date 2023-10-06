@@ -1,0 +1,116 @@
+﻿@model CodeFirstApproach.Models.Product
+@{
+    ViewBag.Title = "Input product";
+}
+
+<h2 class="txt-center mb-5">Input New Product</h2>
+
+<form method="post" action="/admin/product/input" enctype="multipart/form-data">
+    <div class="d-grid grid-1-4 mb-3">
+        @*<label for="ProductId" class="col-form-label">Product Id</label>*@
+        @*<input type="number" class="form-control" id="ProductId" name="ProductId">*@
+
+        @*@Html.Label("Product Id", new {@class= "col-form-label", @for= "ProductId" })*@
+        @Html.LabelFor(tmp => tmp.ProductId, new { @class = "col-form-label", @for = "ProductId" })
+        @Html.TextBoxFor(tmp => tmp.ProductId, new { @type = "number", @class = "form-control", @id = "ProductId" })
+    </div>
+    <div class="d-grid grid-1-4 mb-3">
+        @*<label for="ProductName" class="col-form-label">Product Name</label>
+            <input type="text" class="form-control" id="ProductName" name="ProductName">*@
+
+        @Html.LabelFor(tmp => tmp.ProductName, new { @for = "ProductName", @class = "col-form-label" })
+        @Html.TextBoxFor(tmp => tmp.ProductName, new { @type = "text", @class = "form-control", @id = "ProductName" })
+    </div>
+    <div class="d-grid grid-1-4 mb-3">
+        @*<label for="DateOfPurchase" class="col-form-label">Date Of Purchase</label>
+            <input type="date" class="form-control" id="DateOfPurchase" name="DateOfPurchase">*@
+
+        @Html.LabelFor(tmp => tmp.DateOfPurchase, new { @for = "DateOfPurchase", @class = "col-form-label" })
+        @Html.TextBoxFor(tmp => tmp.DateOfPurchase, new { @type = "date", @class = "form-control", @id = "DateOfPurchase" })
+        <div></div>
+        @Html.ValidationMessageFor(tmp => tmp.DateOfPurchase, "", new { @class = "text-danger" })
+    </div>
+    <div class="d-grid grid-1-4 mb-3">
+        <label class="col-form-label">Availability Status</label>
+        <div>
+            <div class="form-check">
+                @*<input class="form-check-input" type="radio" name="AvailableStatus" id="AvailableStatus1" value="1" checked>
+                    <label class="form-check-label ms-2" for="AvailableStatus1">
+                        Available
+                    </label>*@
+
+                @Html.TextBoxFor(tmp => tmp.AvailableStatus, new { @class = "form-check-input", @type = "radio", @id = "AvailableStatus1", @value = "1", @checked = true })
+                @Html.Label("Available", new { @class = "form-check-label ms-2", @for = "AvailableStatus1" })
+            </div>
+            <div class="form-check gap-2">
+                @*<input class="form-check-input" type="radio" name="AvailableStatus" id="AvailableStatus2" value="0">
+                    <label class="form-check-label ms-2" for="AvailableStatus2">
+                        Not Available
+                    </label>*@
+
+                @Html.TextBoxFor(tmp => tmp.AvailableStatus, new { @class = "form-check-input", @type = "radio", @id = "AvailableStatus2", @value = "0" })
+                @Html.Label("Not Available", new { @class = "form -check-label ms-2", @for = "AvailableStatus2" })
+            </div>
+        </div>
+    </div>
+    <div class="d-grid grid-1-4 mb-3">
+        @*<label for="CategoryId" class="col-form-label">Category</label>
+            <select class="form-select" aria-label="Default select" id="CategoryId" name="CategoryId">
+                <option selected>Select category</option>
+                @{ foreach (var item in ViewBag.cat)
+                    {
+                        <option value="@item.CategoryId">@item.CategoryName</option>
+                    }
+                }
+            </select>*@
+
+        @Html.LabelFor(tmp => tmp.CategoryId, new { @for = "CategoryId", @class = "col-form-label" })
+        @Html.DropDownListFor(tmp => tmp.CategoryId, new SelectList(ViewBag.cat, "CategoryId", "CategoryName"), "Please select", new { @class = "form-select", @id = "CategoryId" })
+    </div>
+    <div class="d-grid grid-1-4 mb-3">
+        @*<label for="BrandId" class="col-form-label">Brand Id</label>
+            <select class="form-select" aria-label="Default select" id="BrandId" name="BrandId">
+                <option selected>Select brand</option>
+                @{ foreach (var item in ViewBag.brand)
+                    {
+                        <option value="@item.BrandId">@item.BrandName</option>
+                    }
+                }
+            </select>*@
+
+        @Html.LabelFor(tmp => tmp.BrandId, new { @for = "BrandId", @class = "col-form-label" })
+        @Html.DropDownListFor(tmp => tmp.BrandId, new SelectList(ViewBag.brand, "BrandId", "BrandName"), "Please select", new { @class = "form-select", @id = "BrandId" })
+    </div>
+    <div class="d-grid grid-1-4 mb-3">
+        @*<label for="price" class="col-form-label">Product Price</label>
+            <input type="number" class="form-control" id="price" name="price">*@
+
+        @Html.LabelFor(tmp => tmp.Price, new { @for = "price", @class = "col-form-label" })
+        @Html.TextBoxFor(tmp => tmp.Price, new { @type = "number", @class = "form-control", @id = "price" })
+    </div>
+    <div class="d-grid grid-1-4 mb-3">
+        <label for="Active" class="col-form-label">Status</label>
+        <div>
+            @*<input class="form-check-input" value="1" type="checkbox" id="Active" name="Active">
+                <label class="form-check-label ms-2" for="Active">
+                    Active
+                </label>*@
+
+            @Html.TextBoxFor(tmp => tmp.Active, new { @class = "form-check-input", @value = "1", @type = "checkbox", @id = "Active" })
+            @Html.LabelFor(tmp => tmp.Active, new { @class = "form-check-label ms-2", @for = "Active" })
+        </div>
+    </div>
+    <div class="d-grid grid-1-4 mb-3">
+        @*<label for="Image" class="col-form-label">Product Image</label>
+            <input type="file" class="form-control" id="Image" name="Image">*@
+
+        @Html.LabelFor(tmp => tmp.Image, new { @for = "Image", @class = "col-form-label" })
+        @Html.TextBoxFor(tmp => tmp.Image, new { @type = "file", @class = "form-control", @id = "Image" })
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a href="/brand">
+        <button type="button" class="btn btn-outline-danger">
+            Cancel
+        </button>
+    </a>
+</form>

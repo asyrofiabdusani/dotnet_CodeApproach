@@ -1,0 +1,46 @@
+﻿@model CodeFirstApproach.ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2 class="txt-center mb-5">Register User</h2>
+<h6 class="text-danger mb-2">@ViewBag.Error</h6>
+
+<form method="post" action="/account/register">
+    <div class="d-grid grid-1-4 mb-3 gap-2">
+        @Html.LabelFor(tmp => tmp.UserName, new { @for = "UserName", @class = "col-form-label" })
+        @Html.TextBoxFor(tmp => tmp.UserName, new { @type = "text", @class = "form-control", @id = "UserName" })
+        <div></div>
+        @Html.ValidationMessageFor(tmp => tmp.UserName, "", new { @class = "text-danger" })
+    </div>
+    <div class="d-grid grid-1-4 mb-3 gap-2">
+        @Html.LabelFor(tmp => tmp.Password, new { @for = "Password", @class = "col-form-label" })
+        @Html.TextBoxFor(tmp => tmp.Password, new { @type = "password", @class = "form-control", @id = "Password" })
+        <div></div>
+        @Html.ValidationMessageFor(tmp => tmp.Password, "", new { @class = "text-danger" })
+    </div>
+    <div class="d-grid grid-1-4 mb-3 gap-2">
+        @Html.LabelFor(tmp => tmp.ConfirmPassword, new { @for = "ConfirmPwd", @class = "col-form-label" })
+        @Html.TextBoxFor(tmp => tmp.ConfirmPassword, new { @type = "password", @class = "form-control", @id = "Password" })
+        <div></div>
+        @Html.ValidationMessageFor(tmp => tmp.ConfirmPassword, "", new { @class = "text-danger" })
+    </div>
+    <div class="d-grid grid-1-4 mb-3 gap-2">
+        @Html.LabelFor(tmp => tmp.Email, new { @for = "Email", @class = "col-form-label" })
+        @Html.TextBoxFor(tmp => tmp.Email, new { @type = "text", @class = "form-control", @id = "Email" })
+        <div></div>
+        @Html.ValidationMessageFor(tmp => tmp.Email, "", new { @class = "text-danger" })
+    </div>
+    <div class="d-grid grid-1-4 mb-3 gap-2">
+        @Html.LabelFor(tmp => tmp.Sex, new { @for = "Sex", @class = "col-form-label" })
+        @Html.TextBoxFor(tmp => tmp.Sex, new { @type = "text", @class = "form-control", @id = "Sex" })
+        <div></div>
+        @Html.ValidationMessageFor(tmp => tmp.Sex, "", new { @class = "text-danger" })
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a href="/category">
+        <button type="button" class="btn btn-outline-danger">
+            Cancel
+        </button>
+    </a>
+</form>
